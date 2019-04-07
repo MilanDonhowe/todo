@@ -1,0 +1,3 @@
+crud - has class with methods to modify file
+user_input - has user inputs binded to crud class
+app - puts it all together
