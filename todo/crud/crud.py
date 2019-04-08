@@ -38,8 +38,10 @@ class System():
         
 
     def read(self):
+        self.readData = []
         with open(self.recordName, "r") as info:
-            print(info.read())
+            self.readData = info.readlines()
+        return self.readData
 
 
     def delete(self, target):
