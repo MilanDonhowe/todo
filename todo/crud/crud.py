@@ -41,7 +41,7 @@ class System():
 
     def create(self, entry):
         
-        self.newEntry = entry
+        self.newEntry = entry.strip()
         
         # add entry if it's new
         if self.checkPresent(self.newEntry) == False:
@@ -86,6 +86,25 @@ class System():
         
         self.old = old
         self.new = new
+        if (self.checkPresent(old) == True):
+            with open(self.recordName, "r+") as info:
+                self.recordData = info.read().split(":")
 
-        self.delete(self.old)
-        self.create(self.new)
+                # find entry in record, delete it & replace it.
+                
+                for i in range(0, len(self.recordData)):
+                    if (self.recordData[i] == self.old):
+                        self.recordData.insert(i, self.new)
+                        self.recordData.remove(self.old)
+                        break
+
+                info.seek(0)
+                for entry in self.recordData:
+                    info.write(entry.strip() + ":")
+                info.truncate()     
+
+        else:
+            print("ERROR: target not present in record")
+            print(self.old)
+            print(self.new)
+            self.delay()

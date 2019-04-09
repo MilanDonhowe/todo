@@ -43,7 +43,13 @@ while True:
     elif userCheckInput.startswith("REMOVE"):
         
         todoSystem.delete(userInput[7:].strip()) 
-        
+    
+    # example input: update "pineapple" pine
+    elif userCheckInput.startswith("UPDATE"):
+    
+        arguments = userInput.split("\"")
+        todoSystem.update(arguments[1], arguments[2])
+
     
     elif userCheckInput.startswith("ADD"):
 
