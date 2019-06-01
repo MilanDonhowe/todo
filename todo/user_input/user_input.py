@@ -4,6 +4,7 @@ from os import system
 # Test
 todoSystem = crud.System()
 
+
 #todoSystem.create("watermelon")
 #todoSystem.create("pineapple")
 #todoSystem.create("pineapple")
@@ -11,7 +12,6 @@ todoSystem = crud.System()
 #todoSystem.delete("watermelon")
 #todoSystem.create("celery")
 #todoSystem.update("celery", "KELTY")
-
 
 # Write the current display
 def display():
@@ -27,6 +27,11 @@ def display():
 
 
 # DRAW GUI
+
+
+# all the ways to exit the applciation
+terminate = ["QUIT", "Q", "EXIT"]
+
 while True:
     
     display()
@@ -36,8 +41,8 @@ while True:
     if userCheckInput == "HELP":
         print("\n help - lists help screen.\n\n add - USAGE: add [entry] - creates new entry to todo list.\n\n remove - USAGE: remove [entry] - deletes entry in todo list.\n\n update - USAGE: update [entry] [newData].\n\n")
         todoSystem.delay()
-        
-    elif userCheckInput == "QUIT":
+    
+    elif userCheckInput in terminate:
         exit()
 
     elif userCheckInput.startswith("REMOVE"):
