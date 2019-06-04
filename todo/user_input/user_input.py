@@ -28,7 +28,7 @@ def display():
 
 # DRAW GUI
 
-
+'''
 # all the ways to exit the applciation
 terminate = ["QUIT", "Q", "EXIT"]
 
@@ -67,3 +67,4 @@ while True:
 
 
 
+'''

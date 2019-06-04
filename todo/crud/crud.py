@@ -62,7 +62,10 @@ class System():
         Writes the dictionary data back to the json file.
         """
 
+        # todo: re-order key values.
+
         # make the dictionary into JSON format
+
         self.savedData = json.dumps(self.recordData)
 
         with open(self.recordName, "w") as jsonFile:
