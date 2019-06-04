@@ -7,12 +7,31 @@
 
         <h1> My Todo List </h1>
         <div id="myList">
-            <ol>
+            <table>
+                <tr>
+                    <th>Thing to do</th>
+                </tr>
                 {% for value in myList %}
-                    <li>{{ value }}</li>
+                    <tr>
+                        <td>{{ value }}</td>
+                    </tr>
                 {% endfor %}
-            </ol>
+            </table>
         </div>
+
+        <form method="POST">
+            {{ addForm.hidden_tag() }}
+            {{ addForm.entry.label }} {{ addForm.entry(id="ADD") }}
+            {{ addForm.submit() }}
+        </form>
+
+        <form method="POST">
+            {{ delForm.hidden_tag() }}
+            {{ delForm.deleteEntry.label }} {{ delForm.deleteEntry(id="DEL") }}
+            {{ delForm.submit() }}
+        </form>
+
+
 
     </body>
 </html>

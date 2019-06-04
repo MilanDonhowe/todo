@@ -23,12 +23,6 @@ class System():
         #print(self.recordData["todolist"])
 
 
-    def delay(self):
-        print("Press enter to continue.")
-        input()
-
-
-
     def checkWhere(self, thisValue):
         """
         Returns the key for a given value.
@@ -62,9 +56,8 @@ class System():
         Writes the dictionary data back to the json file.
         """
 
-        # todo: re-order key values.
-
         # make the dictionary into JSON format
+              
 
         self.savedData = json.dumps(self.recordData)
 
@@ -109,11 +102,24 @@ class System():
 
         if(self.checkPresent(target)):
             del self.recordData["todolist"][self.checkWhere(target)]
+
+            # re-write dictionary in order
+            key = 0
+            oldValues = self.recordData["todolist"].values()
+            organizedData = {}
+            for value in oldValues:
+                key += 1
+                organizedData[str(key)] = value
+            self.recordData["todolist"] = organizedData
+            # RESULTS IN KEY ERROR? Asynchronous issue?
+            
+            
+
+
             # save to the json file
             self.save()
         else:
             print("ERROR: value not present in dictionary.")
-            self.delay()
 
 
         
@@ -132,4 +138,3 @@ class System():
             print("ERROR: target not present in record")
             print(self.old)
             print(self.new)
-            self.delay()
