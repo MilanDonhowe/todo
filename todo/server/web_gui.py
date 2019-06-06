@@ -1,6 +1,6 @@
 # flask websever script
 
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from ..crud import crud
 from flask_wtf import FlaskForm
 from wtforms import IntegerField, SubmitField, StringField
@@ -43,6 +43,12 @@ def temp():
     thisEntry = None
     addForm = newEntry()
     delForm = delEntry()
+
+    # remove value
+    if "delNumber" in request.form:
+        removableKey = request.form["delNumber"]
+        todoList.delete(todoList.readFromKey(str(removableKey)))
+
 
     # if the user removes a value
     if delForm.validate_on_submit():

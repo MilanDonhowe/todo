@@ -1,1 +1,4 @@
-Verselandia:Chemistry Lesson:Spanglish Opinion::Math Test::HI:::::
+things to add to app:
+* readme
+* bootstrap support
+* button interface for delete

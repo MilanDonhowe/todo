@@ -76,7 +76,8 @@ class System():
             for key in self.recordData["todolist"].keys():
                 self.newkey = max(self.newkey, int(key))
                 #if (int(key) > newkey): self.newkey = int(key)
-            self.newkey += 1
+            if (len(self.recordData["todolist"]) != 0):
+                self.newkey += 1
 
             # write the new record
             self.recordData["todolist"][str(self.newkey)] = self.newEntry
@@ -93,6 +94,10 @@ class System():
             self.readData.append(value)
 
         return self.readData
+
+    def readFromKey(self, key):
+        " return value in dictionary based on key "
+        return self.recordData["todolist"][key]
 
 
     def delete(self, target):

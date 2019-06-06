@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <title>Todo App</title>
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename="todo.css") }} ">
     </head>
     <body>
 
@@ -10,14 +11,25 @@
             <table>
                 <tr>
                     <th>Thing to do</th>
+                    <th>Numba</th>
+                    <th>Del?</th>
                 </tr>
                 {% for value in myList %}
                     <tr>
                         <td>{{ value }}</td>
+                        <!--Use loop.index for a form with that for the payload-->
+                        <td>{{ loop.index }}</td>
+                        <td>
+                        <form method="POST">
+                            <input  id="delNumber" name="delNumber" type="hidden" value="{{ loop.index }}">
+                            <input type="submit" name="DelButton" value="X">
+                        </form>
+                        </td>
                     </tr>
                 {% endfor %}
             </table>
         </div>
+
 
         <form method="POST">
             {{ addForm.hidden_tag() }}
