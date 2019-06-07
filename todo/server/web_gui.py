@@ -5,10 +5,12 @@ from ..crud import crud
 from flask_wtf import FlaskForm
 from wtforms import IntegerField, SubmitField, StringField
 from wtforms.validators import DataRequired
-
+from flask_bootstrap import Bootstrap
 
 todoList = crud.System()
 todoApp = Flask(__name__)
+bootstrap = Bootstrap(todoApp)
+
 
 # super secret key
 # in real flask applications this should be instead set as an enviromental variable

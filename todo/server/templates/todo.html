@@ -1,49 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <title>Todo App</title>
-        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename="todo.css") }} ">
-    </head>
-    <body>
 
-        <h1> My Todo List </h1>
-        <div id="myList">
-            <table>
-                <tr>
-                    <th>Thing to do</th>
-                    <th>Numba</th>
-                    <th>Del?</th>
-                </tr>
-                {% for value in myList %}
-                    <tr>
-                        <td>{{ value }}</td>
-                        <!--Use loop.index for a form with that for the payload-->
-                        <td>{{ loop.index }}</td>
-                        <td>
-                        <form method="POST">
-                            <input  id="delNumber" name="delNumber" type="hidden" value="{{ loop.index }}">
-                            <input type="submit" name="DelButton" value="X">
-                        </form>
-                        </td>
-                    </tr>
-                {% endfor %}
-            </table>
-        </div>
+{% extends "bootstrap/base.html" %}
 
+{% block title %} TODO Application {% endblock %}
+{% block content %}    
+<h1> My Todo List </h1>
+<div id="myList" class="container-fluid">
+    <table class="table table-striped table-bordered table-dark">
+        <thead class="thead">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Item</th>
+                <th scope="col">Delete</th>
+            </tr>
+        </thead>
+        {% for value in myList %}
+        <tr>
+            <th scope="row">{{ loop.index }}</th>
+            <td>{{ value }}</td>
+            <td>
+                <form method="POST">
+                    <input  id="delNumber" name="delNumber" type="hidden" value="{{ loop.index }}">
+                    <input type="submit" class="btn btn-warning btn-lg" name="DelButton" value="X">
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    
+</div>
+<form method="POST">
+    <div class="form-group">
+        {{ addForm.hidden_tag() }}
+        {{ addForm.entry.label }} {{ addForm.entry(class="form-control") }}
+        {{ addForm.submit() }}
+    </div>
+</form>
 
-        <form method="POST">
-            {{ addForm.hidden_tag() }}
-            {{ addForm.entry.label }} {{ addForm.entry(id="ADD") }}
-            {{ addForm.submit() }}
-        </form>
-
-        <form method="POST">
-            {{ delForm.hidden_tag() }}
-            {{ delForm.deleteEntry.label }} {{ delForm.deleteEntry(id="DEL") }}
-            {{ delForm.submit() }}
-        </form>
-
-
-
-    </body>
-</html>
+<form method="POST">
+    <div class="form-group">
+        {{ delForm.hidden_tag() }}
+        {{ delForm.deleteEntry.label }} {{ delForm.deleteEntry(class="form-control") }}
+        {{ delForm.submit() }}
+    </div>
+</form>
+{% endblock %}
