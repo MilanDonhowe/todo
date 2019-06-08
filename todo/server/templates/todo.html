@@ -2,10 +2,14 @@
 {% extends "bootstrap/base.html" %}
 
 {% block title %} TODO Application {% endblock %}
-{% block content %}    
-<h1> My Todo List </h1>
-<div id="myList" class="container-fluid">
-    <table class="table table-striped table-bordered table-dark">
+{% block content %}  
+
+
+<span class="border border-primary">
+
+<h1 class="lead text-center"> My Todo List </h1>
+<div id="myList" >
+    <table class="table table-striped table-bordered">
         <thead class="thead">
             <tr>
                 <th scope="col">#</th>
@@ -28,14 +32,15 @@
     </table>
     
 </div>
+
 <form method="POST">
-    <div class="form-group">
+    <div class="form-group container-fluid">
         {{ addForm.hidden_tag() }}
         {{ addForm.entry.label }} {{ addForm.entry(class="form-control") }}
         {{ addForm.submit() }}
     </div>
 </form>
-
+<!--
 <form method="POST">
     <div class="form-group">
         {{ delForm.hidden_tag() }}
@@ -43,4 +48,7 @@
         {{ delForm.submit() }}
     </div>
 </form>
+-->
+
+</span>
 {% endblock %}
